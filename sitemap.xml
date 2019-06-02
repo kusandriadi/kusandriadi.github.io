@@ -5,6 +5,8 @@
   <url>
     <loc>https://kusandri.id/posts/hello-hugo/</loc>
     <lastmod>2019-05-30T08:25:17+07:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
@@ -21,6 +23,8 @@
   
   <url>
     <loc>https://kusandri.id/about/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <url>
