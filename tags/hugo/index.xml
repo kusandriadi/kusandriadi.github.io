@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Kus Andriadi</title>
     <link>https://kusandri.id/tags/hugo/</link>
     <description>Recent content in Hugo on Kus Andriadi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 30 May 2019 08:25:17 +0700</lastBuildDate>
-    
-	<atom:link href="https://kusandri.id/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 30 May 2019 08:25:17 +0700</lastBuildDate><atom:link href="https://kusandri.id/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello Hugo</title>
       <link>https://kusandri.id/posts/hello-hugo/</link>
       <pubDate>Thu, 30 May 2019 08:25:17 +0700</pubDate>
       
       <guid>https://kusandri.id/posts/hello-hugo/</guid>
-      <description>&lt;p&gt;This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years &lt;a href=&#34;https://kusandriadi.com/&#34;&gt;here&lt;/a&gt;. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years [here] (&lt;a href=&#34;https://kusandriadi.com/)&#34;&gt;https://kusandriadi.com/)&lt;/a&gt;. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.&lt;/p&gt;</description>
     </item>
     
   </channel>

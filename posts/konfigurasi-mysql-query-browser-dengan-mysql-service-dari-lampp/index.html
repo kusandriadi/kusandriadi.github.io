@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello Hugo - Kus Andriadi</title>
+    <title>Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Hello Hugo" />
+        <meta property="og:title" content="Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/hello-hugo/" />
+    <meta property="og:url" content="https://kusandri.id/posts/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp/" />
     
     <script type="application/ld+json">
     {
@@ -24,14 +24,14 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Hello Hugo",
-        "headline" : "Hello Hugo",
+        "name" : "Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP",
+        "headline" : "Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/hello-hugo\/",
-        "wordCount" : "123",
-        "keywords" : [ "Hugo","Blog" ]
+        "url" : "https:\/\/kusandri.id\/posts\/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp\/",
+        "wordCount" : "178",
+        "keywords" : [ "Blog" ]
     }
 </script>
 
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Hello Hugo</h1>
+            <h1 class="article-title" itemprop="name">Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP</h1>
         </header>
         
         <div class="article-meta">
@@ -81,11 +81,16 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years [here] (<a href="https://kusandriadi.com/)">https://kusandriadi.com/)</a>. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.</p>
-<p>I decided to split the blog to give more focus outcomes, <a href="https://kusandriadi.com">kusandriadi.com</a> will fill by more random articles, for tech-related will focus on this site. Each articles will write mix sometimes with English or Bahasa Indonesia.</p>
-<p>Hope I can write more often.</p>
-<p>Regards,<!-- raw HTML omitted -->
-Kus</p>
+            <p>Bagi anda yang menggunakan MySQL yang di bundle di dalam lampp dan menggunakan MySQL Query Browser sebagai client mungkin akan mendapatkan sedikit masalah ketika program pertama kali dijalankan. Secara default MySQL Query Browser mencari MySQL Service pada /var/run/mysqld.sock, jika kita belum menginstall MySQL Server dari repositori,tentu saja akan menghasilkan error <code>Can't connect to local MySQL server through socket 'var/run/mysqld/mysqld.sock'</code>, solusinya ternyata mudah sekali, pertama-tama jangan lupa matikan service lamps kita dengan perintah :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo /opt/lampp/lampp stop</code></pre></div>
+<p>Setelah itu kita buat direktori di tempat dimana Mysql Query Browser mencari mysql.sock.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo mkdir /var/run/mysqld 
+$cd /var/run/mysql</code></pre></div></p>
+<p>Kalau langkah diatas sudah dilewati, sekarang tinggal mengcopy file mysql.sock dari <code>/opt/lampp/var/mysql/mysql.sock</code> secara softlink, perbedaan mencopy secara hardlink dan softlink adalah, Jika hardlink, apabila file parentnya di hapus, maka file hasil copy nya masih tetap bisa digunakan. Jika softlink (ln -s), apabila file masternya dihapus, maka file hasil copy nya tidak akan bisa dibaca lagi :</p>
+<!-- raw HTML omitted -->
+<p>Nah, sekarang nyalakan lagi service mysql nya dengan perintah :
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo opt/lampp/lampp start</code></pre></div></p>
+<p>Coba sekarang masuk lagi menggunakan MySQL Query Browser anda, seharusnya sudah tidak ada masalah :)</p>
         </div>
 
         
@@ -99,23 +104,18 @@ Kus</p>
 
         
         
-        <footer class="article-footer">
-            <ul class="article-tag-list">
-                
-                <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://kusandri.id//tags/hugo">Hugo
-                    </a>
-                </li>
-                
-            </ul>
-        </footer>
-        
     </div>
     <nav id="article-nav">
     
+    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint
+        </div>
+    </a>
     
-    <a href="/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Error “File not found” in Linux Mint when using Ms. Office on Wine&nbsp;<span>&gt;</span></div>
+    
+    <a href="/posts/implementasi-basis-data-tertanam-h2-pada-bahasa-pemrograman-java/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

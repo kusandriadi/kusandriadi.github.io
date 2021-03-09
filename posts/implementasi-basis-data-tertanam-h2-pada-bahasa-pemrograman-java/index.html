@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java - Kus Andriadi</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="map[github:kusandriadi]">
+        <meta property="og:title" content="Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://kusandri.id/posts/implementasi-basis-data-tertanam-h2-pada-bahasa-pemrograman-java/" />
+    
+    <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/kusandri.id\/"
+        },
+        "articleSection" : "posts",
+        "name" : "Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java",
+        "headline" : "Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java",
+        "description" : "",
+        "inLanguage" : "en-US",
+        "author" : "Kus Andriadi",         
+        "url" : "https:\/\/kusandri.id\/posts\/implementasi-basis-data-tertanam-h2-pada-bahasa-pemrograman-java\/",
+        "wordCount" : "499",
+        "keywords" : [ "Blog" ]
+    }
+</script>
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Kus Andriadi" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+
+    <link href="https://kusandri.id/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://kusandri.id/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://kusandri.id/css/style.css">
+
+    <meta name="generator" content="Hugo 0.81.0" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://kusandri.id/">Kus Andriadi</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java</h1>
+        </header>
+        
+        <div class="article-meta">
+            
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>Ada dua tipe Basis data yang sudah lumrah kita ketahui, yaitu Basis Data yang bisa berdiri sendiri (Standalone Database) dan tertanam di aplikasi (Embedded Database). Berdiri sendiri berarti Basis Data tersebut tidak menjadi satu dengan aplikasi, biasanya kita harus mengunduhnya secara terpisah. Sedangkan untuk Basis Data yang tertanam, biasanya dijadikan satu paket di aplikasi dan memiliki dua cara untuk menyimpan data, yaitu menggunakan file dan menggunakan memori. Menggunakan memori artinya data tersebut akan disimpan di dalam memori komputer, yang berarti datanya jadi bersifat sementara (volatile) atau akan hilang setelah komputer kehilangan daya (restart atau turn off). Kebalikannya, jika berbentuk file, berarti data tersebut bersifat non-volatile, karena akan disimpan di dalam cakram keras (Hard Disk Drive).</p>
+<p>Ada beberapa basis Data tertanam yang bisa digunakan pada bahasa pemrograman Java, yaitu H2, Apache Derby, Berkley DB, dll. Pada artikel kali ini kita akan menggunakan H2. Sebelumnya, kita bisa mengunduh Basis Data H2 <a href="http://www.h2database.com/html/download.html">di sini</a>, jika menggunakan Windows, kita bisa menggunakan Windows Installer, kalau bukan, kita bisa unduh yang Platform Independent. Jika sudah selesai, langsung saja di install di komputer kita, lalu coba jalankan dan masuk ke <code>http://localhost:8080/h2-console</code>. Masukan data URL, username dan password sebagai berikut :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">URL : jdbc:h2:test
+Username : sa 
+Password : &lt;kosongkan&gt;</code></pre></div>
+<p>Setelah cukup berkenalan dan berhasil masuk ke halaman h2-console, kita akan coba langsung membuat contoh aplikasi kecil yang tersambung ke basis data H2. Buatlah class Koneksi agar aplikasi kita bisa tersambung dengan H2.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#f92672">package</span> com.kusandriadi.koneksi<span style="color:#f92672">;</span>
+
+<span style="color:#f92672">import</span> java.io.File<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.sql.Connection<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.sql.DriverManager<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.sql.SQLException<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> java.util.Properties<span style="color:#f92672">;</span>
+<span style="color:#f92672">import</span> javax.swing.JOptionPane<span style="color:#f92672">;</span>
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Koneksi</span> <span style="color:#f92672">{</span>
+
+    <span style="color:#66d9ef">private</span> String url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;jdbc:h2:./db/TestH2;IFEXISTS=TRUE&#34;</span><span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> String username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;root&#34;</span><span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">private</span> String password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;27111989&#34;</span><span style="color:#f92672">;</span>
+
+    <span style="color:#66d9ef">public</span> Connection <span style="color:#a6e22e">KoneksiDB</span><span style="color:#f92672">(){</span>
+        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+            Class<span style="color:#f92672">.</span><span style="color:#a6e22e">forName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;org.h2.Driver&#34;</span><span style="color:#f92672">);</span>
+            Connection con <span style="color:#f92672">=</span> DriverManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getConnection</span><span style="color:#f92672">(</span>url<span style="color:#f92672">,</span> username<span style="color:#f92672">,</span> password<span style="color:#f92672">);</span>
+            <span style="color:#66d9ef">return</span> con<span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>ClassNotFoundException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            JOptionPane<span style="color:#f92672">.</span><span style="color:#a6e22e">showMessageDialog</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ERROR : &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>SQLException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            JOptionPane<span style="color:#f92672">.</span><span style="color:#a6e22e">showMessageDialog</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ERROR : &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span><span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            JOptionPane<span style="color:#f92672">.</span><span style="color:#a6e22e">showMessageDialog</span><span style="color:#f92672">(</span><span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;ERROR : &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">getMessage</span><span style="color:#f92672">());</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Pada variable URL diatas, kita menggunakan <code>;IFEXISTS=TRUE</code> agar H2 tidak membuat database baru secara otomatis. lalu URL <code>./db/TestH2</code> maksudnya adalah saya menaruh file TestH2.db pada folder db, yang mana folder tersebut saya tempatkan sejajar dengan folder src yang biasa ditemukan di Netbeans, Eclipse atau Intellij. Setelah itu, kita hanya perlu membuat kode untuk melakukan proses input.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+    Koneksi koneksi <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Koneksi<span style="color:#f92672">();</span>
+    Connection con <span style="color:#f92672">=</span> koneksi<span style="color:#f92672">.</span><span style="color:#a6e22e">KoneksiDB</span><span style="color:#f92672">();</span>
+    String sql <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;insert into mahasiswa values (&#34;</span><span style="color:#f92672">+</span> txtNim<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;,&#39;&#34;</span><span style="color:#f92672">+</span> txtNama<span style="color:#f92672">.</span><span style="color:#a6e22e">getText</span><span style="color:#f92672">()</span> <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;)&#34;</span><span style="color:#f92672">;</span>
+    PreparedStatement preparedStatement <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span><span style="color:#a6e22e">prepareStatement</span><span style="color:#f92672">(</span>sql<span style="color:#f92672">);</span>
+    preparedStatement<span style="color:#f92672">.</span><span style="color:#a6e22e">executeUpdate</span><span style="color:#f92672">();</span>
+    System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;data berhasil disimpan&#34;</span><span style="color:#f92672">);</span>
+    con<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+<span style="color:#f92672">}</span></code></pre></div>
+<p>Pada contoh kali ini saya akan menyimpan data dengan bentuk berkas (file). Dengan begitu, kita bisa memindahkan aplikasi yang kita buat ke tempat lain tanpa harus mengkonfigurasi basis data lagi, karena sudah tersimpan di dalam file tersebut. Jika langkah-langkah di atas sudah diikuti dengan baik, kita hanya perlu menjalankan script untuk memasukan data di atas.</p>
+<p>Sudah? Nah, sekarang silakan cek di h2 console, seharusnya data yang kita masukan sudah bisa dilihat di database TestH2 🙂</p>
+<p>Sumber :</p>
+<ol>
+<li>Wikipedia : (<a href="http://en.wikipedia.org/wiki/Embedded_database">http://en.wikipedia.org/wiki/Embedded_database</a>)</li>
+<li>H2 : (<a href="http://www.h2database.com/">http://www.h2database.com/</a>)</li>
+</ol>
+        </div>
+
+        
+        
+        <div class="article-toc" >
+            <h3>Contents</h3>
+            <nav id="TableOfContents"></nav>
+        </div>
+        
+        
+
+        
+        
+    </div>
+    <nav id="article-nav">
+    
+    <a href="/posts/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP
+        </div>
+    </a>
+    
+    
+</nav>
+
+</article>
+
+        <div id="graphcomment"></div>
+		<script type="text/javascript">
+
+		   
+
+		  
+		  window.gc_params = {
+		    graphcomment_id: 'kusandri-id',
+
+		    
+		    fixed_header_height: 0,
+		  };
+
+		   
+
+		  (function() {
+		    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+		    gc.src = 'https://graphcomment.com/js/integration.js';
+		    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+		  })();
+		</script>
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+		See more non-tech related articles at <a href="http://kusandriadi.com" target="_blank">kusandriadi.com</a><br/>
+            &copy; 2021 Kus Andriadi
+        </div>
+    </div>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-141670233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/tomorrow-night.min.css" integrity="sha256-2wL88NKUqvJi/ExflDzkzUumjUM73mcK2gBvBBeLvTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+
+</div>
+</body>
+</html>

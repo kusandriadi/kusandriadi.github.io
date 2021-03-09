@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello Hugo - Kus Andriadi</title>
+    <title>Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Hello Hugo" />
+        <meta property="og:title" content="Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/hello-hugo/" />
+    <meta property="og:url" content="https://kusandri.id/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" />
     
     <script type="application/ld+json">
     {
@@ -24,14 +24,14 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Hello Hugo",
-        "headline" : "Hello Hugo",
+        "name" : "Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint",
+        "headline" : "Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/hello-hugo\/",
-        "wordCount" : "123",
-        "keywords" : [ "Hugo","Blog" ]
+        "url" : "https:\/\/kusandri.id\/posts\/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint\/",
+        "wordCount" : "176",
+        "keywords" : [ "Blog" ]
     }
 </script>
 
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Hello Hugo</h1>
+            <h1 class="article-title" itemprop="name">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint</h1>
         </header>
         
         <div class="article-meta">
@@ -81,41 +81,91 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years [here] (<a href="https://kusandriadi.com/)">https://kusandriadi.com/)</a>. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.</p>
-<p>I decided to split the blog to give more focus outcomes, <a href="https://kusandriadi.com">kusandriadi.com</a> will fill by more random articles, for tech-related will focus on this site. Each articles will write mix sometimes with English or Bahasa Indonesia.</p>
-<p>Hope I can write more often.</p>
-<p>Regards,<!-- raw HTML omitted -->
-Kus</p>
+            <p>Bagi yang baru ingin memulai belajar programming menggunakan Java, atau bahkan sudah lama menggunakan Java tapi baru menggunakan Linux, atau bahkan belum pernah menggunakan Java dan belum pernah menggunakan Linux :D, di sini saya akan menulis tutorial singkat bagaimana menginstall dan mengkonfigurasi JDK, Netbeans dan Eclipse langkah demi langkah. Saya biasa menggunakan Eclipse untuk belajar Android Programming, dan Netbeans untuk Java Web, dll. Tapi tentu saja semua itu bukanlah paksaan, kamu bisa memilih IDE kesayangan masing-masing dalam membangun suatu aplikasi :)</p>
+<h2 id="1-install-jdk">1. Install JDK</h2>
+<p>Download JDK <!-- raw HTML omitted -->disini<!-- raw HTML omitted -->.</p>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>$cd data/app</p>
+</blockquote>
+<ul>
+<li>lalu ubah permission dari JDK tersebut, dengan perintah :</li>
+</ul>
+<blockquote>
+<p>$chmod +x nama_jdk.bin</p>
+</blockquote>
+<ul>
+<li>Setelah itu, execute file bin tersebut dengan perintah :</li>
+</ul>
+<blockquote>
+<p>$./nama_jdk.bin</p>
+</blockquote>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>JAVA_HOME=/home/kusandriadi/data/app/jdk1.6.0_25<br>
+export JAVA_HOME<br>
+PATH=$JAVA_HOME/bin:$PATH<br>
+export PATH</p>
+</blockquote>
+<h2 id="2-install-netbeans">2. Install Netbeans</h2>
+<ul>
+<li>Download Netbeans <a href="http://netbeans.org/downloads/">disini</a>.</li>
+</ul>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>$cd data/app</p>
+</blockquote>
+<ul>
+<li>lalu ubah permission dari Netbeans tersebut, dengan perintah :</li>
+</ul>
+<blockquote>
+<p>$chmod +x netbeans.sh</p>
+</blockquote>
+<ul>
+<li>Setelah itu, execute file netbeans.sh tersebut dengan perintah :</li>
+</ul>
+<blockquote>
+<p>$ sh netbeans.sh</p>
+</blockquote>
+<ul>
+<li>Setelah itu akan keluar wizard, dan kamu hanya perlu mengikuti urutannya seperti di windows 😀</li>
+</ul>
+<h2 id="3-install-eclipse">3. Install Eclipse</h2>
+<!-- raw HTML omitted -->
+<p>Sudah selesai? So, Give them the code 😀</p>
+<p>Regards,</p>
+<p><a href="https://i2.wp.com/blog.kusandriadi.com/wp-content/uploads/2009/03/tandatangankecil.png"><!-- raw HTML omitted --></a></p>
         </div>
 
         
         
         <div class="article-toc" >
             <h3>Contents</h3>
-            <nav id="TableOfContents"></nav>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-install-jdk">1. Install JDK</a></li>
+    <li><a href="#2-install-netbeans">2. Install Netbeans</a></li>
+    <li><a href="#3-install-eclipse">3. Install Eclipse</a></li>
+  </ul>
+</nav>
         </div>
         
         
 
         
         
-        <footer class="article-footer">
-            <ul class="article-tag-list">
-                
-                <li class="article-tag-list-item">
-                    <a class="article-tag-list-link" href="https://kusandri.id//tags/hugo">Hugo
-                    </a>
-                </li>
-                
-            </ul>
-        </footer>
-        
     </div>
     <nav id="article-nav">
     
+    <a href="/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            Error “File not found” in Linux Mint when using Ms. Office on Wine
+        </div>
+    </a>
     
-    <a href="/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Error “File not found” in Linux Mint when using Ms. Office on Wine&nbsp;<span>&gt;</span></div>
+    
+    <a href="/posts/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

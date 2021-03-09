@@ -1,22 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kus Andriadi</title>
     <link>https://kusandri.id/</link>
     <description>Recent content on Kus Andriadi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 30 May 2019 08:25:17 +0700</lastBuildDate>
-    
-	<atom:link href="https://kusandri.id/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 30 May 2019 08:25:17 +0700</lastBuildDate><atom:link href="https://kusandri.id/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Hello Hugo</title>
       <link>https://kusandri.id/posts/hello-hugo/</link>
       <pubDate>Thu, 30 May 2019 08:25:17 +0700</pubDate>
       
       <guid>https://kusandri.id/posts/hello-hugo/</guid>
-      <description>&lt;p&gt;This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years &lt;a href=&#34;https://kusandriadi.com/&#34;&gt;here&lt;/a&gt;. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This is my first post with Hugo platform, I choose static blogging because want more simplicity when writing article. For your information, I already used WordPress for ten years [here] (&lt;a href=&#34;https://kusandriadi.com/)&#34;&gt;https://kusandriadi.com/)&lt;/a&gt;. I do not have any problem with WordPress blogging, it is run well until now, but I need a more simple way to writing. Adding more WordPress blog could be very overkill, because I do not need any fancy feature ;), just create the file and publish the article.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Error “File not found” in Linux Mint when using Ms. Office on Wine</title>
+      <link>https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/</link>
+      <pubDate>Tue, 26 Jul 2011 07:49:05 +0000</pubDate>
+      
+      <guid>https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/</guid>
+      <description>&lt;p&gt;There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint</title>
+      <link>https://kusandri.id/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/</link>
+      <pubDate>Tue, 19 Jul 2011 18:53:44 +0000</pubDate>
+      
+      <guid>https://kusandri.id/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/</guid>
+      <description>&lt;p&gt;Bagi yang baru ingin memulai belajar programming menggunakan Java, atau bahkan sudah lama menggunakan Java tapi baru menggunakan Linux, atau bahkan belum pernah menggunakan Java dan belum pernah menggunakan Linux :D, di sini saya akan menulis tutorial singkat bagaimana menginstall dan mengkonfigurasi JDK, Netbeans dan Eclipse langkah demi langkah. Saya biasa menggunakan Eclipse untuk belajar Android Programming, dan Netbeans untuk Java Web, dll. Tapi tentu saja semua itu bukanlah paksaan, kamu bisa memilih IDE kesayangan masing-masing dalam membangun suatu aplikasi :)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Konfigurasi MySQL Query Browser dengan MySQL Service dari LAMPP</title>
+      <link>https://kusandri.id/posts/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp/</link>
+      <pubDate>Tue, 19 Jul 2011 17:29:58 +0000</pubDate>
+      
+      <guid>https://kusandri.id/posts/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp/</guid>
+      <description>&lt;p&gt;Bagi anda yang menggunakan MySQL yang di bundle di dalam lampp dan menggunakan MySQL Query Browser sebagai client mungkin akan mendapatkan sedikit masalah ketika program pertama kali dijalankan. Secara default MySQL Query Browser mencari MySQL Service pada /var/run/mysqld.sock, jika kita belum menginstall MySQL Server dari repositori,tentu saja akan menghasilkan error &lt;code&gt;Can&#39;t connect to local MySQL server through socket &#39;var/run/mysqld/mysqld.sock&#39;&lt;/code&gt;, solusinya ternyata mudah sekali, pertama-tama jangan lupa matikan service lamps kita dengan perintah :&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Implementasi Basis Data Tertanam H2 pada bahasa pemrograman Java</title>
+      <link>https://kusandri.id/posts/implementasi-basis-data-tertanam-h2-pada-bahasa-pemrograman-java/</link>
+      <pubDate>Tue, 01 Jun 2010 18:11:38 +0000</pubDate>
+      
+      <guid>https://kusandri.id/posts/implementasi-basis-data-tertanam-h2-pada-bahasa-pemrograman-java/</guid>
+      <description>&lt;p&gt;Ada dua tipe Basis data yang sudah lumrah kita ketahui, yaitu Basis Data yang bisa berdiri sendiri (Standalone Database) dan tertanam di aplikasi (Embedded Database). Berdiri sendiri berarti Basis Data tersebut tidak menjadi satu dengan aplikasi, biasanya kita harus mengunduhnya secara terpisah. Sedangkan untuk Basis Data yang tertanam, biasanya dijadikan satu paket di aplikasi dan memiliki dua cara untuk menyimpan data, yaitu menggunakan file dan menggunakan memori. Menggunakan memori artinya data tersebut akan disimpan di dalam memori komputer, yang berarti datanya jadi bersifat sementara (volatile) atau akan hilang setelah komputer kehilangan daya (restart atau turn off). Kebalikannya, jika berbentuk file, berarti data tersebut bersifat non-volatile, karena akan disimpan di dalam cakram keras (Hard Disk Drive).&lt;/p&gt;</description>
     </item>
     
   </channel>
