@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error “File not found” in Linux Mint when using Ms. Office on Wine - Kus Andriadi</title>
+    <title>Copy row(s) into same table in MySQL - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Error “File not found” in Linux Mint when using Ms. Office on Wine" />
+        <meta property="og:title" content="Copy row(s) into same table in MySQL" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" />
+    <meta property="og:url" content="https://kusandri.id/posts/copy-rows-into-same-table-in-mysql/" />
     
     <script type="application/ld+json">
     {
@@ -24,13 +24,13 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
-        "headline" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
+        "name" : "Copy row(s) into same table in MySQL",
+        "headline" : "Copy row(s) into same table in MySQL",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine\/",
-        "wordCount" : "155",
+        "url" : "https:\/\/kusandri.id\/posts\/copy-rows-into-same-table-in-mysql\/",
+        "wordCount" : "81",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Error “File not found” in Linux Mint when using Ms. Office on Wine</h1>
+            <h1 class="article-title" itemprop="name">Copy row(s) into same table in MySQL</h1>
         </header>
         
         <div class="article-meta">
@@ -81,23 +81,11 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint</p>
-<ol>
-<li>
-<p>Using Gnome Menu, you can add it to applet, or pressing ALT + F1, you can run Ms. Office from Gnome Menu smoothly.</p>
-</li>
-<li>
-<p>Changing Ms. Office app properties in mintmenu, eg I have property Ms. Word on mintmenu like this:</p>
-</li>
-</ol>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine C:\windows\command\start.exe /Unix /home/kusandriadi/.wine/dosdevices/c:/users/kusandriadi/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Office\ Word\ 2007.lnk</p>
-</blockquote>
-<p>and then you only have to change its properties like this</p>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine “C:\Program Files\Microsoft Office\Office12\WINWORD.exe”</p>
-</blockquote>
-<p>Now, your Ms. Office app should be run properly from mintmenu normally 😀</p>
+            <p>I have a trouble when I want to copy row from another row in same table with MySQL, after a little googling, I found the solution is very simple, we just have to add 2 command like below.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">SELECT</span> rowName <span style="color:#66d9ef">FROM</span> tableName <span style="color:#66d9ef">FOR</span> <span style="color:#66d9ef">UPDATE</span>;  
+<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">UPDATE</span> tableName <span style="color:#66d9ef">SET</span> rowName2 <span style="color:#f92672">=</span> rowName;
+</code></pre></div><p>It is easy right? I post as a little article like this just to want help another people with same problem. So, hope this post will help you, enjoy!</p>
+
         </div>
 
         
@@ -114,15 +102,15 @@
     </div>
     <nav id="article-nav">
     
-    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/subversion-how-to-adding-file/folder-to-ignore-list-with-command-line/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            How to add windows font in linux?
+            Subversion : How to adding file/folder to ignore list with command line
         </div>
     </a>
     
     
-    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint&nbsp;<span>&gt;</span></div>
+    <a href="/posts/memperlakukan-barang-kesayangan-dengan-baik/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Memperlakukan barang kesayangan dengan baik&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

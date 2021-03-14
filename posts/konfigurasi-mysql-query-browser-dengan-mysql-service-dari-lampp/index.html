@@ -30,7 +30,7 @@
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
         "url" : "https:\/\/kusandri.id\/posts\/konfigurasi-mysql-query-browser-dengan-mysql-service-dari-lampp\/",
-        "wordCount" : "178",
+        "wordCount" : "183",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -87,7 +87,7 @@
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo mkdir /var/run/mysqld 
 $cd /var/run/mysql</code></pre></div></p>
 <p>Kalau langkah diatas sudah dilewati, sekarang tinggal mengcopy file mysql.sock dari <code>/opt/lampp/var/mysql/mysql.sock</code> secara softlink, perbedaan mencopy secara hardlink dan softlink adalah, Jika hardlink, apabila file parentnya di hapus, maka file hasil copy nya masih tetap bisa digunakan. Jika softlink (ln -s), apabila file masternya dihapus, maka file hasil copy nya tidak akan bisa dibaca lagi :</p>
-<!-- raw HTML omitted -->
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo ln -s /opt/lampp/var/mysql/mysql.sock mysqld.sock</code></pre></div>
 <p>Nah, sekarang nyalakan lagi service mysql nya dengan perintah :
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo opt/lampp/lampp start</code></pre></div></p>
 <p>Coba sekarang masuk lagi menggunakan MySQL Query Browser anda, seharusnya sudah tidak ada masalah :)</p>

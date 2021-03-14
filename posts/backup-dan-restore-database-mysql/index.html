@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error “File not found” in Linux Mint when using Ms. Office on Wine - Kus Andriadi</title>
+    <title>Backup dan Restore database MySQL - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Error “File not found” in Linux Mint when using Ms. Office on Wine" />
+        <meta property="og:title" content="Backup dan Restore database MySQL" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" />
+    <meta property="og:url" content="https://kusandri.id/posts/backup-dan-restore-database-mysql/" />
     
     <script type="application/ld+json">
     {
@@ -24,13 +24,13 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
-        "headline" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
+        "name" : "Backup dan Restore database MySQL",
+        "headline" : "Backup dan Restore database MySQL",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine\/",
-        "wordCount" : "155",
+        "url" : "https:\/\/kusandri.id\/posts\/backup-dan-restore-database-mysql\/",
+        "wordCount" : "270",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Error “File not found” in Linux Mint when using Ms. Office on Wine</h1>
+            <h1 class="article-title" itemprop="name">Backup dan Restore database MySQL</h1>
         </header>
         
         <div class="article-meta">
@@ -81,23 +81,15 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint</p>
-<ol>
-<li>
-<p>Using Gnome Menu, you can add it to applet, or pressing ALT + F1, you can run Ms. Office from Gnome Menu smoothly.</p>
-</li>
-<li>
-<p>Changing Ms. Office app properties in mintmenu, eg I have property Ms. Word on mintmenu like this:</p>
-</li>
-</ol>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine C:\windows\command\start.exe /Unix /home/kusandriadi/.wine/dosdevices/c:/users/kusandriadi/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Office\ Word\ 2007.lnk</p>
-</blockquote>
-<p>and then you only have to change its properties like this</p>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine “C:\Program Files\Microsoft Office\Office12\WINWORD.exe”</p>
-</blockquote>
-<p>Now, your Ms. Office app should be run properly from mintmenu normally 😀</p>
+            <p>Dalam membuat dan merawat database terkadang kita harus melakukan backup secara berkala agar kita bisa siap pada saat terjadi hal-hal yang tidak diinginkan terjadi pada database. Blog saya pun di backup secara berkala oleh hosting tempat saya menyimpan data. Hal ini penting, salah satunya ketika saya memindahkan url blog, saya harus membackup database dan blog saya terlebih dahulu untuk kemudian dipindahkan direktorinya.</p>
+<p>Cara membackup database cukup mudah, pertama-tama masuk ke command prompt terlebih dahulu (dalam hal ini saya menggunakan OS Windows), jangan lupa, untuk melakukan command-command dibawah, kamu tidak perlu masuk MySQL sebagai admin, cukup lakukan diluar. Ketikan perintah seperti dibawah ini :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqldump -u root -p db_dummy table1 table2 &gt; backup<span style="color:#ae81ff">\_</span>partial.sql
+</code></pre></div><p>&ldquo;db_dummy&rdquo; diatas adalah nama database. Sedangkan table1 dan table2 adalah nama tabel di dalam database. backup_partial.sql adalah nama file backup yang ingin kita buat. Command diatas digunakan jika kita ingin membackup database hanya pada database tertentu saja, lalu bagaimana caranya jika kita ingin membackup seluruh database? mudah, kita hanya mengubah sedikit command diatas seperti ini :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqldump -u root -p db_dummy &gt; backup.sql
+</code></pre></div><p>dengan perintah diatas, MySQL akan melakukan dump pada seluruh database db_dummy, ketika tombol enter ditekan, MySQL akan meminta password admin, lalu file backup akan terbuat otomatis pada direktori dimana anda berada,
+Lalu bagaimana caranya melakukan restore database? sama seperti command diatas, tapi ada sedikit beberapa perbedaan, buka command prompt, dan arahkan direktori dimana file backup kamu berada, lalu masukan command seperti dibawah ini :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -u root -p db_dummy &lt; backup.sql
+</code></pre></div><p>perbedaan ada di tanda panah &ldquo;&gt;&rdquo; dan &ldquo;&lt;&rdquo;, untuk melakukan command diatas juga tidak perlu masuk ke MySQL sebagai admin, cukup lakukan dari luar.</p>
         </div>
 
         
@@ -114,15 +106,15 @@
     </div>
     <nav id="article-nav">
     
-    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/configure-mysql-on-os-x/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            How to add windows font in linux?
+            Configure MySQL on OS X
         </div>
     </a>
     
     
-    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint&nbsp;<span>&gt;</span></div>
+    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">How to add windows font in linux?&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

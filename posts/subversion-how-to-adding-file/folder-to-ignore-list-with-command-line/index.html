@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error “File not found” in Linux Mint when using Ms. Office on Wine - Kus Andriadi</title>
+    <title>Subversion : How to adding file/folder to ignore list with command line - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Error “File not found” in Linux Mint when using Ms. Office on Wine" />
+        <meta property="og:title" content="Subversion : How to adding file/folder to ignore list with command line" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" />
+    <meta property="og:url" content="https://kusandri.id/posts/subversion-how-to-adding-file/folder-to-ignore-list-with-command-line/" />
     
     <script type="application/ld+json">
     {
@@ -24,13 +24,13 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
-        "headline" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
+        "name" : "Subversion : How to adding file\/folder to ignore list with command line",
+        "headline" : "Subversion : How to adding file\/folder to ignore list with command line",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine\/",
-        "wordCount" : "155",
+        "url" : "https:\/\/kusandri.id\/posts\/subversion-how-to-adding-file\/folder-to-ignore-list-with-command-line\/",
+        "wordCount" : "247",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Error “File not found” in Linux Mint when using Ms. Office on Wine</h1>
+            <h1 class="article-title" itemprop="name">Subversion : How to adding file/folder to ignore list with command line</h1>
         </header>
         
         <div class="article-meta">
@@ -81,23 +81,12 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint</p>
-<ol>
-<li>
-<p>Using Gnome Menu, you can add it to applet, or pressing ALT + F1, you can run Ms. Office from Gnome Menu smoothly.</p>
-</li>
-<li>
-<p>Changing Ms. Office app properties in mintmenu, eg I have property Ms. Word on mintmenu like this:</p>
-</li>
-</ol>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine C:\windows\command\start.exe /Unix /home/kusandriadi/.wine/dosdevices/c:/users/kusandriadi/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Office\ Word\ 2007.lnk</p>
-</blockquote>
-<p>and then you only have to change its properties like this</p>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine “C:\Program Files\Microsoft Office\Office12\WINWORD.exe”</p>
-</blockquote>
-<p>Now, your Ms. Office app should be run properly from mintmenu normally 😀</p>
+            <p>Maybe we had known how to add a file or folder (from this time and so on I will just said &ldquo;file&rdquo;) on IDE. In this case, I often using Eclipse, and adding files as ignore list in eclipse is like shooting fish in a barrel. But occasionally we have to use a command-line to complete it. and do not worry, this is not too difficult. I will show you how 🙂</p>
+<p>There are two conditions of a file that we want to ignore. First, the file is already in svn repo, and the others not in svn yet. How we tackle these? Remember to always remove a file from svn repo first for this case. because we can not add a file to ignore the list while the file is on the repo. What we have to do just go to the directory of our repo in local, and just put the command below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ svn rm --keep-local filename
+</code></pre></div><p>The command above will remove our file from svn but will keep the file on our local. just simple. after this, we can add them to ignore list with the command below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ svn propset svn:ignore filename .
+</code></pre></div><p>look at the dot (.) sign at the end of the command, after you do that. voila, the file will be included in the ignoring list and will never be committed to the repository. this last command also applies to all files that never commit before to the repo.</p>
         </div>
 
         
@@ -114,15 +103,15 @@
     </div>
     <nav id="article-nav">
     
-    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/tpa-tes-potensi-akademik-bappenas/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            How to add windows font in linux?
+            TPA (Tes Potensi Akademik) Bappenas
         </div>
     </a>
     
     
-    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint&nbsp;<span>&gt;</span></div>
+    <a href="/posts/copy-rows-into-same-table-in-mysql/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Copy row(s) into same table in MySQL&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

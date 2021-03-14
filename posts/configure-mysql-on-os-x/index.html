@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error “File not found” in Linux Mint when using Ms. Office on Wine - Kus Andriadi</title>
+    <title>Configure MySQL on OS X - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Error “File not found” in Linux Mint when using Ms. Office on Wine" />
+        <meta property="og:title" content="Configure MySQL on OS X" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" />
+    <meta property="og:url" content="https://kusandri.id/posts/configure-mysql-on-os-x/" />
     
     <script type="application/ld+json">
     {
@@ -24,13 +24,13 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
-        "headline" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
+        "name" : "Configure MySQL on OS X",
+        "headline" : "Configure MySQL on OS X",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine\/",
-        "wordCount" : "155",
+        "url" : "https:\/\/kusandri.id\/posts\/configure-mysql-on-os-x\/",
+        "wordCount" : "235",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Error “File not found” in Linux Mint when using Ms. Office on Wine</h1>
+            <h1 class="article-title" itemprop="name">Configure MySQL on OS X</h1>
         </header>
         
         <div class="article-meta">
@@ -81,23 +81,31 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint</p>
-<ol>
-<li>
-<p>Using Gnome Menu, you can add it to applet, or pressing ALT + F1, you can run Ms. Office from Gnome Menu smoothly.</p>
-</li>
-<li>
-<p>Changing Ms. Office app properties in mintmenu, eg I have property Ms. Word on mintmenu like this:</p>
-</li>
-</ol>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine C:\windows\command\start.exe /Unix /home/kusandriadi/.wine/dosdevices/c:/users/kusandriadi/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Office\ Word\ 2007.lnk</p>
-</blockquote>
-<p>and then you only have to change its properties like this</p>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine “C:\Program Files\Microsoft Office\Office12\WINWORD.exe”</p>
-</blockquote>
-<p>Now, your Ms. Office app should be run properly from mintmenu normally 😀</p>
+            <p>In this article, I will show you how to configure MySQL self install. First, you have to make sure there is .bash_login file in your home directory, if the file does not exist, just make the file and open that file with</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">edit .bash_login
+</code></pre></div><p>Anyway, MySQL is install in <strong>/usr/local/mysql</strong> directory, you need to rename to <strong>/usr/local/mysql-yourversion</strong>. After that, you can put code below in .bash_login</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#ae81ff">\#</span> Add the MySQL Home environment
+export set MYSQL_HOME<span style="color:#f92672">=</span>/usr/local/mysql-yourversion
+
+<span style="color:#ae81ff">\#</span> Add mysql directory to home path  
+export set PATH<span style="color:#f92672">=</span>$PATH:$MYSQL_HOME/bin
+
+<span style="color:#ae81ff">\#</span> Make an alias to start and stop mysql  
+alias mysqlstart<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Library/StartupItems/MySQLCOM/MySQLCOM start&#34;</span>
+alias mysqlstop<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/Library/StartupItems/MySQLCOM/MySQLCOM stop&#34;</span>
+</code></pre></div><p>After that you can save and close editor, close your terminal too and then open new session terminal, then input command like this :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">which -a mysql
+</code></pre></div><p>it should return your mysql directory :D. So, let&rsquo;s go to the next step, connect to your MySQL as root</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysql -u root  
+use mysql;  
+SELECT USER,password, host FROM USER
+</code></pre></div><p>command above will show you mysql password and username, if you want to changes credential, just enter command below :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">SET PASSWORD <span style="color:#66d9ef">for</span> <span style="color:#e6db74">&#34;root@localhost&#34;</span> <span style="color:#f92672">=</span> password<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;iamhandsome&#34;</span><span style="color:#f92672">)</span>;
+</code></pre></div><p>Of course, you should not be follow me to set a password like that, it is not safe :p After that, do not forget to flush privileges MySQL to refresh your MySQL configuration. Now, you can enter MySQL admin with terminal and start/stop MySQL with command below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mysqlstart start  
+//and  
+mysqlstart stop
+</code></pre></div>
         </div>
 
         
@@ -114,15 +122,15 @@
     </div>
     <nav id="article-nav">
     
-    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/memperlakukan-barang-kesayangan-dengan-baik/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            How to add windows font in linux?
+            Memperlakukan barang kesayangan dengan baik
         </div>
     </a>
     
     
-    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint&nbsp;<span>&gt;</span></div>
+    <a href="/posts/backup-dan-restore-database-mysql/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Backup dan Restore database MySQL&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>

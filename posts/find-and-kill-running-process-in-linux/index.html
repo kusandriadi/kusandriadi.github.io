@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Find and kill running process in Linux - Kus Andriadi</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="map[github:kusandriadi]">
+        <meta property="og:title" content="Find and kill running process in Linux" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://kusandri.id/posts/find-and-kill-running-process-in-linux/" />
+    
+    <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/kusandri.id\/"
+        },
+        "articleSection" : "posts",
+        "name" : "Find and kill running process in Linux",
+        "headline" : "Find and kill running process in Linux",
+        "description" : "",
+        "inLanguage" : "en-US",
+        "author" : "Kus Andriadi",         
+        "url" : "https:\/\/kusandri.id\/posts\/find-and-kill-running-process-in-linux\/",
+        "wordCount" : "438",
+        "keywords" : [ "Blog" ]
+    }
+</script>
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Kus Andriadi" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+
+    <link href="https://kusandri.id/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://kusandri.id/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://kusandri.id/css/style.css">
+
+    <meta name="generator" content="Hugo 0.81.0" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://kusandri.id/">Kus Andriadi</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Find and kill running process in Linux</h1>
+        </header>
+        
+        <div class="article-meta">
+            
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <p>There are several ways to kill a process in Linux, all of them are very straightforward, you can kill the process directly from a terminal using a certain port or just kill the application directly. In this article, I will only discuss 3 of them. Be wisely, just stopping the process that you know and do not be careless, stopping the process that related to operating system could mess up your day 🙂</p>
+<p>As far as we know, all operating systems (without exception) have limited resources. Include memory, port, storage, etc. What should we do is ensure all those resources comply with our needs. There is a condition that we got hang in our apps and operating system needs time to recover those resources. For example, I am using a web server (tomcat) that uses port 8181, then my tomcat gets crash/hang. what should I do is shut down the tomcat service and start again. Unfortunately, the operating system still booked port 8181, With this condition, we have an option to kill that port by our self or just waiting until operating system realized this problem and clears that port. If your choice is to kill the port by your self, here we go</p>
+<h2 id="using-fuser">Using fuser</h2>
+<p>If you have known what port should be stopped, just open terminal or press CTRL+ALT+T, then use the following command :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$fuser -k 8181/tcp
+</code></pre></div><p>the command above will kill the process, to check whether the port has been free, you can use this :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$fuser 8181/tcp
+</code></pre></div><h2 id="using-netstat">Using netstat</h2>
+<p>Open your terminal or press CTRL +ALT+T, then use the following command :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$netstat -anp | grep <span style="color:#ae81ff">8181</span>
+</code></pre></div><p>with netstat, you will get more detail information about the port. for example :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">tcp ? ? ? ?0 ? ? ?0 0.0.0.0:8181 ? ? ? ? ? ? ? ?0.0.0.0:* ? ? ? ? ? ? ? ? ? LISTEN ? ? ?16360/java
+</code></pre></div><p>the PID number is 16360, After you are sure that everything is OK. just kill the port with this command :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo kill -9 <span style="color:#ae81ff">16360</span>
+</code></pre></div><h2 id="using-history-of-application">Using History of application</h2>
+<p>This way is my favorite, I just need the name of the application, with the following command :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ps -ef | grep tomcat
+</code></pre></div><p>the output would be like this :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa ? ? <span style="color:#ae81ff">16660</span> ? ? <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">14</span> 13:29 pts/2 ? ?00:00:04
+</code></pre></div><p>the PID number is 16660, the same way as before. Just kill the apps using the PID information :</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$sudo kill -9 <span style="color:#ae81ff">16360</span>
+</code></pre></div><p>That is all, The first and the second way is used when you have known the port already. very simple. just like shooting fish in a barrel 🙂</p>
+        </div>
+
+        
+        
+        <div class="article-toc" >
+            <h3>Contents</h3>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#using-fuser">Using fuser</a></li>
+    <li><a href="#using-netstat">Using netstat</a></li>
+    <li><a href="#using-history-of-application">Using History of application</a></li>
+  </ul>
+</nav>
+        </div>
+        
+        
+
+        
+        
+    </div>
+    <nav id="article-nav">
+    
+    <a href="/posts/definisi-dari-sebuah-kebenaran/" id="article-nav-newer" class="article-nav-link-wrap">
+        <div class="article-nav-title"><span>&lt;</span>&nbsp;
+            Definisi dari sebuah kebenaran
+        </div>
+    </a>
+    
+    
+    <a href="/posts/find-files-that-containing-particular-text-in-linux/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Find files that containing particular text in Linux&nbsp;<span>&gt;</span></div>
+    </a>
+    
+</nav>
+
+</article>
+
+        <div id="graphcomment"></div>
+		<script type="text/javascript">
+
+		   
+
+		  
+		  window.gc_params = {
+		    graphcomment_id: 'kusandri-id',
+
+		    
+		    fixed_header_height: 0,
+		  };
+
+		   
+
+		  (function() {
+		    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+		    gc.src = 'https://graphcomment.com/js/integration.js';
+		    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+		  })();
+		</script>
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+		See more non-tech related articles at <a href="http://kusandriadi.com" target="_blank">kusandriadi.com</a><br/>
+            &copy; 2021 Kus Andriadi
+        </div>
+    </div>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-141670233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/tomorrow-night.min.css" integrity="sha256-2wL88NKUqvJi/ExflDzkzUumjUM73mcK2gBvBBeLvTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+
+</div>
+</body>
+</html>

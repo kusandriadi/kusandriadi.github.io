@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Error “File not found” in Linux Mint when using Ms. Office on Wine - Kus Andriadi</title>
+    <title>How to add windows font in linux? - Kus Andriadi</title>
 
         <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -9,11 +9,11 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <meta name="author" content="map[github:kusandriadi]">
-        <meta property="og:title" content="Error “File not found” in Linux Mint when using Ms. Office on Wine" />
+        <meta property="og:title" content="How to add windows font in linux?" />
     <meta property="og:description" content="" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:url" content="https://kusandri.id/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" />
+    <meta property="og:url" content="https://kusandri.id/posts/how-to-add-windows-font-in-linux/" />
     
     <script type="application/ld+json">
     {
@@ -24,13 +24,13 @@
              "@id": "https:\/\/kusandri.id\/"
         },
         "articleSection" : "posts",
-        "name" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
-        "headline" : "Error “File not found” in Linux Mint when using Ms. Office on Wine",
+        "name" : "How to add windows font in linux?",
+        "headline" : "How to add windows font in linux?",
         "description" : "",
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
-        "url" : "https:\/\/kusandri.id\/posts\/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine\/",
-        "wordCount" : "155",
+        "url" : "https:\/\/kusandri.id\/posts\/how-to-add-windows-font-in-linux\/",
+        "wordCount" : "228",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -72,7 +72,7 @@
     <div class="article-inner">
         
         <header class="article-header">
-            <h1 class="article-title" itemprop="name">Error “File not found” in Linux Mint when using Ms. Office on Wine</h1>
+            <h1 class="article-title" itemprop="name">How to add windows font in linux?</h1>
         </header>
         
         <div class="article-meta">
@@ -81,23 +81,25 @@
             
         </div>
         <div class="article-entry" itemprop="articleBody">
-            <p>There is an error which is quite annoying if we install MS. Office on Linux Mint using Wine, it would appear error “File not found” or something like that when launch Ms. Office applications such as Ms. Word, Ms. Excel, etc. I get an information when i’m googling, it is because of bugs in mintmenu. Then, how do I fix it? There are several ways that we can run Ms. Office on Linux Mint</p>
-<ol>
-<li>
-<p>Using Gnome Menu, you can add it to applet, or pressing ALT + F1, you can run Ms. Office from Gnome Menu smoothly.</p>
-</li>
-<li>
-<p>Changing Ms. Office app properties in mintmenu, eg I have property Ms. Word on mintmenu like this:</p>
-</li>
-</ol>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine C:\windows\command\start.exe /Unix /home/kusandriadi/.wine/dosdevices/c:/users/kusandriadi/Start\ Menu/Programs/Microsoft\ Office/Microsoft\ Office\ Word\ 2007.lnk</p>
-</blockquote>
-<p>and then you only have to change its properties like this</p>
-<blockquote>
-<p>env WINEPREFIX=”/home/kusandriadi/.wine” wine “C:\Program Files\Microsoft Office\Office12\WINWORD.exe”</p>
-</blockquote>
-<p>Now, your Ms. Office app should be run properly from mintmenu normally 😀</p>
+            <p>You can find font like Tahoma, Arial, Times New Roman, Verdana, etc. in windows OS, but not in Linux. You will find a little problem because of that, the example one is, if you open document that using font there isn&rsquo;t exist, it will make your document untidy. So how to adding windows font in linux? it is very easy, there are 2 ways to adding windows font in linux.</p>
+<p><strong>1. Download from repository</strong></p>
+<p>In default, there is windows font package in repository. You only need to execute this command below</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ sudo apt-get install ttf-mscorefonts-installer
+</code></pre></div><p>but if you using this way, you will not find tahoma&rsquo;s font. I don&rsquo;t know why, but you can add it manually with the 2nd way.</p>
+<p><strong>2. Copy windows font</strong></p>
+<p>There are several step with this way :</p>
+<ul>
+<li>Copy windows font, you can find it in &ldquo;C:\Windows\Fonts&rdquo; (Win7 based), put in 1 folder.</li>
+<li>Login to Linux Mint (I am using LM 12 :p ) as root</li>
+<li>Paste to &ldquo;/usr/share/fonts/truetype&rdquo;</li>
+<li>Open terminal, type command below :</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">cd /usr/share/fonts/truetype
+chmod <span style="color:#ae81ff">777</span> -R folder-name/*
+</code></pre></div><ul>
+<li>Now, you can check it works or not. Open LibreOffice or OpenOffice. Is there Tahoma, Arial or Times New Roman? if still doesn&rsquo;t exist, Logout or restart your PC first.</li>
+</ul>
+<p>Still there is no changes? just follow the instructions above one more time with carefully. it should be works without problem.</p>
         </div>
 
         
@@ -114,15 +116,15 @@
     </div>
     <nav id="article-nav">
     
-    <a href="/posts/how-to-add-windows-font-in-linux/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/posts/backup-dan-restore-database-mysql/" id="article-nav-newer" class="article-nav-link-wrap">
         <div class="article-nav-title"><span>&lt;</span>&nbsp;
-            How to add windows font in linux?
+            Backup dan Restore database MySQL
         </div>
     </a>
     
     
-    <a href="/posts/install-dan-konfigurasi-jdk-netbeans-dan-eclipse-di-linux-mint/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">Install dan konfigurasi JDK, Netbeans dan Eclipse di Linux Mint&nbsp;<span>&gt;</span></div>
+    <a href="/posts/error-file-not-found-in-linux-mint-when-using-ms.-office-on-wine/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Error “File not found” in Linux Mint when using Ms. Office on Wine&nbsp;<span>&gt;</span></div>
     </a>
     
 </nav>
