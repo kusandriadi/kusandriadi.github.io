@@ -5,14 +5,25 @@
     <link>https://kusandriadi.com/</link>
     <description>Recent content on Kus Andriadi</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 04 Jun 2019 15:14:10 +0000</lastBuildDate><atom:link href="https://kusandriadi.com/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Jul 2021 16:55:31 +0000</lastBuildDate><atom:link href="https://kusandriadi.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deploy and Manage MongoDB with Docker</title>
+      <link>https://kusandriadi.com/posts/deploy-and-manage-mongodb-with-docker/</link>
+      <pubDate>Tue, 20 Jul 2021 16:55:31 +0000</pubDate>
+      
+      <guid>https://kusandriadi.com/posts/deploy-and-manage-mongodb-with-docker/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;MongoDB is NoSQL database platform. It doesn&amp;rsquo;t use a fixed data structure like old school RDBMS like MySQL and PostgreSQL. It makes MongoDB becomes more scalable, because we are not bound with field or relational limitation.&lt;/p&gt;
+&lt;p&gt;In this tutorial, I assume you have installed Docker in your machine. The steps should be the same for another image installation.&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Apakah sumber kalian cukup kredibel?</title>
       <link>https://kusandriadi.com/posts/apakah-sumber-kalian-cukup-kredibel/</link>
       <pubDate>Tue, 04 Jun 2019 15:14:10 +0000</pubDate>
       
       <guid>https://kusandriadi.com/posts/apakah-sumber-kalian-cukup-kredibel/</guid>
-      <description>&lt;p&gt;Pada artikel &lt;!-- raw HTML omitted --&gt;sebelumnya&lt;!-- raw HTML omitted --&gt;, Saya sudah sedikit membahas bagaimana caranya memilih informasi yang baik untuk dibagikan, mengapa harus yang baik? karena di dunia maya, banyak sekali informasi yang tidak baik bertebaran, tidak baik di sini bisa jadi karena informasi tersebut bohong atau bias. Tidak bisa sembarangan memang, kalau kita sering membaca portal berita online belakangan, sudah beberapa kali kita melihat orang yang memiliki pekerjaan yang baik dengan pendidikan yang cukup tinggi (saya tidak mau menyebut profesi) ditangkap polisi karena diduga menyebarkan berita bohong.&lt;/p&gt;</description>
+      <description>&lt;p&gt;TEST Pada artikel &lt;!-- raw HTML omitted --&gt;sebelumnya&lt;!-- raw HTML omitted --&gt;, Saya sudah sedikit membahas bagaimana caranya memilih informasi yang baik untuk dibagikan, mengapa harus yang baik? karena di dunia maya, banyak sekali informasi yang tidak baik bertebaran, tidak baik di sini bisa jadi karena informasi tersebut bohong atau bias. Tidak bisa sembarangan memang, kalau kita sering membaca portal berita online belakangan, sudah beberapa kali kita melihat orang yang memiliki pekerjaan yang baik dengan pendidikan yang cukup tinggi (saya tidak mau menyebut profesi) ditangkap polisi karena diduga menyebarkan berita bohong.&lt;/p&gt;</description>
     </item>
     
     <item>
