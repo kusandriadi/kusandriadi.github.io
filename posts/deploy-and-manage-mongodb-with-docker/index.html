@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deploy and Manage MongoDB with Docker - Kus Andriadi</title>
+
+        <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="map[github:kusandriadi]">
+        <meta property="og:title" content="Deploy and Manage MongoDB with Docker" />
+    <meta property="og:description" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="https://kusandriadi.com/posts/deploy-and-manage-mongodb-with-docker/" />
+    
+    <script type="application/ld+json">
+    {
+        "@context" : "http://schema.org",
+        "@type" : "BlogPosting",
+        "mainEntityOfPage": {
+             "@type": "WebPage",
+             "@id": "https:\/\/kusandriadi.com\/"
+        },
+        "articleSection" : "posts",
+        "name" : "Deploy and Manage MongoDB with Docker",
+        "headline" : "Deploy and Manage MongoDB with Docker",
+        "description" : "",
+        "inLanguage" : "en-US",
+        "author" : "Kus Andriadi",         
+        "url" : "https:\/\/kusandriadi.com\/posts\/deploy-and-manage-mongodb-with-docker\/",
+        "wordCount" : "595",
+        "keywords" : [ "Blog" ]
+    }
+</script>
+
+    <link href="" rel="alternate" type="application/rss+xml" title="Kus Andriadi" />
+    <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+
+    <link href="https://kusandriadi.com/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+    <link href="https://kusandriadi.com/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="https://kusandriadi.com/css/style.css">
+
+    <meta name="generator" content="Hugo 0.83.1" />
+</head>
+
+
+<body>
+<div id="container">
+    <header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+            <a id="logo" class="logo-text" href="https://kusandriadi.com/">Kus Andriadi</a>
+            <nav id="main-nav">
+                
+                <a class="main-nav-link" href="/about/">About</a>
+                
+            </nav>
+            <nav id="sub-nav">
+                <div id="search-form-wrap">
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+    <section id="main" class="outer">
+        <article class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        <header class="article-header">
+            <h1 class="article-title" itemprop="name">Deploy and Manage MongoDB with Docker</h1>
+        </header>
+        
+        <div class="article-meta">
+            
+            
+            
+        </div>
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="introduction">Introduction</h2>
+<p>MongoDB is NoSQL database platform. It doesn&rsquo;t use a fixed data structure like old school RDBMS like MySQL and PostgreSQL. It makes MongoDB becomes more scalable, because we are not bound with field or relational limitation.</p>
+<p>In this tutorial, I assume you have installed Docker in your machine. The steps should be the same for another image installation.</p>
+<p>For this tutorial, I am using docker version below :
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker --version
+Docker version 20.10.7, build f0df350</code></pre></div></p>
+<h2 id="download-mongodb-image-from-docker">Download MongoDB Image from Docker</h2>
+<h3 id="pull-mongodb-image">Pull MongoDB Image</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker pull mongo
+Using default tag: latest
+latest: Pulling from library/mongo
+99006dae3b24: Pull complete 
+0566436151d6: Pull complete 
+f3e35ecfc23e: Pull complete 
+a03a1be757b0: Pull complete 
+7ea0d006dcea: Pull complete 
+fb3446d972a9: Pull complete 
+c476bc840c3d: Pull complete 
+3dea434cd2cc: Pull complete 
+233d505385d1: Pull complete 
+aa0176c9085e: Pull complete 
+Digest: sha256:2bf2258cb12f8d4086965fe794605571c715fa4815dbcc299ea9768783bf4fa1
+Status: Downloaded newer image <span style="color:#66d9ef">for</span> mongo:latest
+docker.io/library/mongo:latest</code></pre></div>
+<p>Above command will pull the latest version of MongoDB, if you need to pull particular version, you can using command below :
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker pull mongo:3.0.0</code></pre></div></p>
+<h3 id="list-docker-images">List Docker Images</h3>
+<p>You can list all docker images with &ldquo;images&rdquo; command
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+mongo        latest    0aacc5695653   <span style="color:#ae81ff">21</span> hours ago   639MB</code></pre></div></p>
+<p>We can see that I only have one docker image. Alternatively, you also can list all images using &ldquo;ls&rdquo;</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+mongo        latest    0aacc5695653   <span style="color:#ae81ff">21</span> hours ago   639MB</code></pre></div>
+<p>You can see the different, first command using &ldquo;images&rdquo; with &ldquo;s&rdquo;. The second using &ldquo;image&rdquo; with &ldquo;ls&rdquo;</p>
+<h2 id="deploy-mongodb-image-as-a-container">Deploy MongoDB image as a container</h2>
+<h3 id="showing-running-container">Showing Running Container</h3>
+<p>You can check in your machine what container is online.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</code></pre></div></p>
+<p>As you can see, I don&rsquo;t have any online container. We can go to the next step to see the differences.</p>
+<h3 id="deploy-mongodb">Deploy MongoDB</h3>
+<p>By default, MongoDB will store the data to <strong>/data/db</strong> in container, that means if we don&rsquo;t store the data in our local directory, the data will gone when we turn off the container. What we can do is mounting container data to local directory.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ sudo mkdir -p /mongodata</code></pre></div></p>
+<p>I creating folder &ldquo;mongodata&rdquo;, the folder will used for storing mongo data from container. Anyway, you can use any folder name. After that, go to that directory and start container
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker run -d -v /Users/someone/code/mongodata:/data/db --name mymongo -d mongo
+9d120dc5fd4cd679ad5a589a2cf49839e0d7c27df9923f03a49f18cd264c3458</code></pre></div></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Command</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-d</td>
+<td style="text-align:left">Run in background</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">Mounting data from container to local (localPath:containerPath)</td>
+</tr>
+<tr>
+<td style="text-align:left">-name</td>
+<td style="text-align:left">Container name</td>
+</tr>
+</tbody>
+</table>
+<p>Now, you can try to list running container again
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS       NAMES
+9d120dc5fd4c   mongo     <span style="color:#e6db74">&#34;docker-entrypoint.s…&#34;</span>   <span style="color:#ae81ff">3</span> minutes ago   Up <span style="color:#ae81ff">3</span> minutes   27017/tcp   mymongo</code></pre></div></p>
+<h2 id="launch-mongodb-shell-client">Launch MongoDB Shell Client</h2>
+<p>MongoDB already run in the container, to access it from our local machine, we need to exec the container
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker exec -it mymongo bash
+root@9d120dc5fd4c:/# mongo
+MongoDB shell version v5.0.0
+connecting to: mongodb://127.0.0.1:27017/?compressors<span style="color:#f92672">=</span>disabled&amp;gssapiServiceName<span style="color:#f92672">=</span>mongodb
+Implicit session: session <span style="color:#f92672">{</span> <span style="color:#e6db74">&#34;id&#34;</span> : UUID<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;e63ccdde-6eb6-4452-98c6-7d7c02ac2568&#34;</span><span style="color:#f92672">)</span> <span style="color:#f92672">}</span>
+MongoDB server version: 5.0.0</code></pre></div></p>
+<p>Congrats! You already connect to docker container, you can try to list all databases
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB</code></pre></div></p>
+<h2 id="start-and-stop-mongodb-container">Start and Stop MongoDB Container</h2>
+<p>For starting the container, you can just simply do
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker start mymongo</code></pre></div></p>
+<p>in reverse, for stopping container</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker stop mymongo</code></pre></div>
+<p>Remember, mymongo is container name that we set when creating the container.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Now, you already know how to install and running container using docker. Eventhough the example in this article is using mongodb, I hope you have general understanding how to install images and creating container in docker.</p>
+        </div>
+
+        
+        
+        <div class="article-toc" >
+            <h3>Contents</h3>
+            <nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#download-mongodb-image-from-docker">Download MongoDB Image from Docker</a>
+      <ul>
+        <li><a href="#pull-mongodb-image">Pull MongoDB Image</a></li>
+        <li><a href="#list-docker-images">List Docker Images</a></li>
+      </ul>
+    </li>
+    <li><a href="#deploy-mongodb-image-as-a-container">Deploy MongoDB image as a container</a>
+      <ul>
+        <li><a href="#showing-running-container">Showing Running Container</a></li>
+        <li><a href="#deploy-mongodb">Deploy MongoDB</a></li>
+      </ul>
+    </li>
+    <li><a href="#launch-mongodb-shell-client">Launch MongoDB Shell Client</a></li>
+    <li><a href="#start-and-stop-mongodb-container">Start and Stop MongoDB Container</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+        </div>
+        
+        
+
+        
+        
+    </div>
+    <nav id="article-nav">
+    
+    
+    <a href="/posts/apakah-sumber-kalian-cukup-kredibel/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">Apakah sumber kalian cukup kredibel?&nbsp;<span>&gt;</span></div>
+    </a>
+    
+</nav>
+
+</article>
+
+        <div id="graphcomment"></div>
+		<script type="text/javascript">
+
+		   
+
+		  
+		  window.gc_params = {
+		    graphcomment_id: 'kusandri-id',
+
+		    
+		    fixed_header_height: 0,
+		  };
+
+		   
+
+		  (function() {
+		    var gc = document.createElement('script'); gc.type = 'text/javascript'; gc.async = true;
+		    gc.src = 'https://graphcomment.com/js/integration.js';
+		    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(gc);
+		  })();
+		</script>
+    </section>
+    <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+		See more non-tech related articles at <a href="http://kusandriadi.com" target="_blank">kusandriadi.com</a><br/>
+            &copy; 2021 Kus Andriadi
+        </div>
+    </div>
+    
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-141670233-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/tomorrow-night.min.css" integrity="sha256-2wL88NKUqvJi/ExflDzkzUumjUM73mcK2gBvBBeLvTk=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js" integrity="sha256-KbfTjB0WZ8vvXngdpJGY3Yp3xKk+tttbqClO11anCIU=" crossorigin="anonymous"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
+    <script>
+        document.getElementById('main-nav-toggle').addEventListener('click', function () {
+            var header = document.getElementById('header');
+            if (header.classList.contains('mobile-on')) {
+                header.classList.remove('mobile-on');
+            } else {
+                header.classList.add('mobile-on');
+            }
+        });
+    </script>
+</footer>
+
+</div>
+</body>
+</html>
