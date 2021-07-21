@@ -30,7 +30,7 @@
         "inLanguage" : "en-US",
         "author" : "Kus Andriadi",         
         "url" : "https:\/\/kusandriadi.com\/posts\/deploy-and-manage-mongodb-with-docker\/",
-        "wordCount" : "595",
+        "wordCount" : "603",
         "keywords" : [ "Blog" ]
     }
 </script>
@@ -127,7 +127,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</code></p
 <p>By default, MongoDB will store the data to <strong>/data/db</strong> in container, that means if we don&rsquo;t store the data in our local directory, the data will gone when we turn off the container. What we can do is mounting container data to local directory.
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ sudo mkdir -p /mongodata</code></pre></div></p>
 <p>I creating folder &ldquo;mongodata&rdquo;, the folder will used for storing mongo data from container. Anyway, you can use any folder name. After that, go to that directory and start container
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker run -d -v /Users/someone/code/mongodata:/data/db --name mymongo -d mongo
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">kusa $ docker run -d -v /Users/someone/code/mongodata:/data/db -p 27017:27017 --name mymongo -d mongo
 9d120dc5fd4cd679ad5a589a2cf49839e0d7c27df9923f03a49f18cd264c3458</code></pre></div></p>
 <table>
 <thead>
@@ -144,6 +144,10 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES</code></p
 <tr>
 <td style="text-align:left">-v</td>
 <td style="text-align:left">Mounting data from container to local (localPath:containerPath)</td>
+</tr>
+<tr>
+<td style="text-align:left">-p</td>
+<td style="text-align:left">expose/publish port to outside container</td>
 </tr>
 <tr>
 <td style="text-align:left">-name</td>
