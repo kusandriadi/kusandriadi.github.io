@@ -95,6 +95,7 @@ Sebelum mengubah apa pun di sini, agent harus tanya/cek:
 Beberapa file di repo ini bukan dihasilkan dari `hugo` build, dan **boleh disentuh manual** (atau dipertahankan saat deploy):
 - `CNAME` — di-set ulang setiap deploy oleh action karena di workflow ada `cname: kusandriadi.com`. Jadi sebenarnya auto-managed juga.
 - `.nojekyll` — historically committed manual, tapi `peaceiris/actions-gh-pages` biasanya menambahkannya otomatis. Aman dibiarkan.
+- `AGENTS.md` (file ini) — **dipertahankan secara eksplisit** oleh workflow source repo via step `Preserve AGENTS.md from publish branch`: workflow `curl` file ini dari branch `master` repo ini lalu copy ke `./public/AGENTS.md` sebelum `peaceiris/actions-gh-pages` jalan, sehingga tidak ikut ter-clean saat replace. **Update file ini langsung di branch `master` repo ini** — perubahan akan persist di deploy berikutnya. Kalau file dihapus di repo ini, deploy berikutnya akan jalan tanpa preservation (step `continue-on-error: true`) dan AGENTS.md akan hilang permanen kecuali di-restore manual.
 
 Selebihnya: anggap semua file di sini disposable dan akan di-replace.
 
